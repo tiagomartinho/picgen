@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EAE6CE082939EDA3008DA5F1 /* model in Resources */ = {isa = PBXBuildFile; fileRef = EAE6CE072939EDA3008DA5F1 /* model */; };
 		EAE71DF92939E9D9003214E0 /* picgenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE71DF82939E9D9003214E0 /* picgenApp.swift */; };
 		EAE71DFB2939E9D9003214E0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE71DFA2939E9D9003214E0 /* ContentView.swift */; };
 		EAE71DFD2939E9DA003214E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAE71DFC2939E9DA003214E0 /* Assets.xcassets */; };
 		EAE71E012939E9DA003214E0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAE71E002939E9DA003214E0 /* Preview Assets.xcassets */; };
+		EAE71E092939E9F7003214E0 /* StableDiffusion in Frameworks */ = {isa = PBXBuildFile; productRef = EAE71E082939E9F7003214E0 /* StableDiffusion */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EAE6CE072939EDA3008DA5F1 /* model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = model; sourceTree = "<group>"; };
 		EAE71DF52939E9D9003214E0 /* picgen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = picgen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAE71DF82939E9D9003214E0 /* picgenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = picgenApp.swift; sourceTree = "<group>"; };
 		EAE71DFA2939E9D9003214E0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE71E092939E9F7003214E0 /* StableDiffusion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +56,7 @@
 		EAE71DF72939E9D9003214E0 /* picgen */ = {
 			isa = PBXGroup;
 			children = (
+				EAE6CE072939EDA3008DA5F1 /* model */,
 				EAE71DF82939E9D9003214E0 /* picgenApp.swift */,
 				EAE71DFA2939E9D9003214E0 /* ContentView.swift */,
 				EAE71DFC2939E9DA003214E0 /* Assets.xcassets */,
@@ -85,6 +90,9 @@
 			dependencies = (
 			);
 			name = picgen;
+			packageProductDependencies = (
+				EAE71E082939E9F7003214E0 /* StableDiffusion */,
+			);
 			productName = picgen;
 			productReference = EAE71DF52939E9D9003214E0 /* picgen.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +121,9 @@
 				Base,
 			);
 			mainGroup = EAE71DEC2939E9D9003214E0;
+			packageReferences = (
+				EAE71E072939E9F7003214E0 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */,
+			);
 			productRefGroup = EAE71DF62939E9D9003214E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE6CE082939EDA3008DA5F1 /* model in Resources */,
 				EAE71E012939E9DA003214E0 /* Preview Assets.xcassets in Resources */,
 				EAE71DFD2939E9DA003214E0 /* Assets.xcassets in Resources */,
 			);
@@ -354,6 +366,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EAE71E072939E9F7003214E0 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/ml-stable-diffusion";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EAE71E082939E9F7003214E0 /* StableDiffusion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAE71E072939E9F7003214E0 /* XCRemoteSwiftPackageReference "ml-stable-diffusion" */;
+			productName = StableDiffusion;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EAE71DED2939E9D9003214E0 /* Project object */;
 }
