@@ -33,7 +33,7 @@ struct ContentView: View {
                             var images: [CGImage?]?
                             do {
                                 print("generate")
-                                images = try pipeline?.generateImages(prompt: prompt, progressHandler: { progress in
+                                images = try pipeline?.generateImages(prompt: prompt, disableSafety: true, progressHandler: { progress in
                                     print("test")
                                     DispatchQueue.main.async {
                                         self.progress = Double(progress.step) / 50
@@ -62,7 +62,7 @@ struct ContentView: View {
                 do {
                     let url = Bundle.main.resourceURL?.appending(path: "model")
                     print("loaded url")
-                    pipeline = try StableDiffusionPipeline(resourcesAt: url!)
+                    pipeline = try StableDiffusionPipeline(resourcesAt: url!, disableSafety: true)
                 } catch let error {
                     print(error.localizedDescription)
                 }
