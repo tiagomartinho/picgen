@@ -9,7 +9,7 @@ struct ContentView: View {
     @State var progress = 0.0
     @State var generating = false
     @State var booting = true
-
+    
     @State var pipeline: StableDiffusionPipeline?
     
     var body: some View {
@@ -29,17 +29,15 @@ struct ContentView: View {
                         progress = 0.0
                         image = nil
                         generating = true
-                        DispatchQueue.global(qos: .userInitiated).async {
+                        Task.detached(priority: .high) {
                             var images: [CGImage?]?
                             do {
                                 print("generate")
                                 images = try pipeline?.generateImages(prompt: prompt, disableSafety: true, progressHandler: { progress in
                                     print("test")
-                                    DispatchQueue.main.async {
-                                        self.progress = Double(progress.step) / 50
-                                        if let image = progress.currentImages.first {
-                                            self.image = image
-                                        }
+                                    self.progress = Double(progress.step) / 50
+                                    if let image = progress.currentImages.first {
+                                        self.image = image
                                     }
                                     return true
                                 })
@@ -58,7 +56,7 @@ struct ContentView: View {
         }
         .padding()
         .onAppear {
-            DispatchQueue.global(qos: .userInitiated).async {
+            Task.detached(priority: .high) {
                 do {
                     let url = Bundle.main.resourceURL?.appending(path: "model")
                     print("loaded url")
