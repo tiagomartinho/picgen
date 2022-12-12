@@ -12,6 +12,8 @@ struct ContentView: View {
     
     @State var pipeline: StableDiffusionPipeline?
     
+    private let disableSafety = false
+    
     var body: some View {
         VStack {
             if booting {
@@ -33,7 +35,7 @@ struct ContentView: View {
                             var images: [CGImage?]?
                             do {
                                 print("generate")
-                                images = try pipeline?.generateImages(prompt: prompt, disableSafety: true, progressHandler: { progress in
+                                images = try pipeline?.generateImages(prompt: prompt, disableSafety: disableSafety, progressHandler: { progress in
                                     print("test")
                                     self.progress = Double(progress.step) / 50
                                     if let image = progress.currentImages.first {
@@ -60,8 +62,10 @@ struct ContentView: View {
                 do {
                     let url = Bundle.main.resourceURL?.appending(path: "model")
                     print("loaded url")
-                    pipeline = try StableDiffusionPipeline(resourcesAt: url!, disableSafety: true)
+                    pipeline = try StableDiffusionPipeline(resourcesAt: url!, disableSafety: disableSafety)
+                    print("initialized pipeline")
                 } catch let error {
+                    print("error initializing pipeline")
                     print(error.localizedDescription)
                 }
                 booting = false
